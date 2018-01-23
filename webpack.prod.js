@@ -12,6 +12,10 @@ const extractCSS = new ExtractTextPlugin('stylesheets/[name]-style.css')
 const extractStylus = new ExtractTextPlugin('stylesheets/[name]-stylus.css')
 
 const config = {
+  entry: {
+    index: './src/index'
+  },
+
   module: {
     rules: [
       {
@@ -41,7 +45,11 @@ const config = {
 
   plugins: [
     new CleanWebpackPlugin(['build']),
+    new webpack.HashedModuleIdsPlugin(),
     new ManifestPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest'
+    }),
     extractCSS,
     extractStylus,
     new webpack.optimize.UglifyJsPlugin(),

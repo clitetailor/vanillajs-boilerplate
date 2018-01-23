@@ -2,12 +2,18 @@ const path = require('path')
 const common = require('./webpack.common')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const webpack = require('webpack')
 
 const config = {
+  entry: {
+    index: './src/index',
+    vendor: ['immutable', 'rxjs']
+  },
+
+  cache: true,
+
   devServer: {
     port: 9000,
     contentBase: path.join(__dirname, 'build'),
@@ -42,11 +48,17 @@ const config = {
 
   plugins: [
     new CleanWebpackPlugin(),
-    new ManifestPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest'
     }),
     new HtmlWebpackPlugin({
       title: 'City Editor',

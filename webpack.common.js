@@ -1,13 +1,9 @@
 const path = require('path')
 
 const config = {
-  entry: {
-    index: './src/index'
-  },
-
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].js'
+    filename: '[name].[hash].js'
   },
 
   context: __dirname,

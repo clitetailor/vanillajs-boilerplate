@@ -6,13 +6,13 @@
   "scripts": {
     "start": "electron . --enable-logging --remove-debugging-port=9222",
     "dev": "webpack-dev-server --config webpack.dev.js",
+    "test": "karma start",
+    "coverage": "karma start --coverage",
     "build": "webpack --config webpack.prod.js",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
   },
   "repository": "https://github.com/clitetailor/vanillajs-boilerplate",
-  "keywords": [
-    "vanillajs"
-  ],
+  "keywords": ["vanillajs"],
   "author": "clitetailor",
   "license": "MIT",
   "devDependencies": {

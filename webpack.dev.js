@@ -8,8 +8,7 @@ const webpack = require('webpack')
 
 const config = {
   entry: {
-    index: './src/index',
-    vendor: ['immutable', 'rxjs']
+    index: './src/index'
   },
 
   cache: true,

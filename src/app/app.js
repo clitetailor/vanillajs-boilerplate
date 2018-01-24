@@ -8,8 +8,21 @@ export class App {
   }
 
   init() {
-    this.root.setAttribute('view', 'app')
+    const root = this.root
+    root.setAttribute('view', 'app')
 
-    this.root.innerHTML = html
+    root.innerHTML = html
+
+    const views = {
+      title: root.querySelector('h1')
+    }
+    this.views = views
+
+    const data = {
+      title: 'Hello World!'
+    }
+    this.data = data
+
+    views.title.textContent = data.title
   }
 }
